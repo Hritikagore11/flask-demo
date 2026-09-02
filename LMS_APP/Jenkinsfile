@@ -17,7 +17,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'cd LMS_APP && pytest'
+                sh 'cd LMS_APP && PYTHONPATH=. pytest'
             }
         }
 
