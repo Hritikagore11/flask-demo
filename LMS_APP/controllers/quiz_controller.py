@@ -91,7 +91,7 @@ def edit_quiz(quiz_id):
         return redirect(url_for("auth_controller.login"))
 
     if session.get("user_role") != "instructor":
-        abort(404)
+        abort(403)
 
     try:
         quiz = quiz_service.get_quiz(quiz_id)
