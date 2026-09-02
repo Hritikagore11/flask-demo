@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  DEPLOYMENT_ENV: "test"
+  DB_HOST: mysql-service
+  DB_PORT: "3306"
+  DB_NAME: lms_db
+  DB_USER: root
