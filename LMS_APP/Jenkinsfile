@@ -11,19 +11,19 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'pip install -r requirements.txt'
+                sh 'cd LMS_APP && pip install --break-system-packages -r requirements.txt'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'pytest'
+                sh 'cd LMS_APP && pytest'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t hritika1/lms_app:latest .'
+                sh 'cd LMS_APP && docker build -t hritika1/lms_app:latest .'
             }
         }
 
