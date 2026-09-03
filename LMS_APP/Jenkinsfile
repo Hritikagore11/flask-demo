@@ -22,8 +22,8 @@ pipeline {
                     cd LMS_APP
 
                     export DB_USER=root
-                    export DB_PASSWORD=test
-                    export DB_HOST=localhost
+                    export DB_PASSWORD=Lms@123
+                    export DB_HOST=host.docker.internal
                     export DB_PORT=3306
                     export DB_NAME=lms_db
                     export TEST_DB_NAME=lms_db

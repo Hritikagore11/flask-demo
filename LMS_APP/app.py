@@ -35,6 +35,7 @@ from controllers.api import api_v2
 load_dotenv()
 
 app = Flask(__name__)
+app.config["TESTING"] = os.getenv("TESTING") == "1"
 app.secret_key = os.getenv("SECRET_KEY")
 app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")
 app.config["JWT_TOKEN_LOCATION"] = ["cookies", "headers"]
