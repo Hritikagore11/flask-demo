@@ -21,7 +21,21 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'cd LMS_APP && docker build -t hritika1/lms_app:latest .'
+                stage('Test') {
+    steps {
+        sh '''
+            cd LMS_APP
+            export DB_USER=root
+            export DB_PASSWORD=test
+            export DB_HOST=localhost
+            export DB_PORT=3306
+            export DB_NAME=lms_db
+            export SECRET_KEY=test-secret-key
+            export JWT_SECRET_KEY=test-jwt-secret-key
+            PYTHONPATH=. pytest
+        '''
+    }
+}
             }
         }
 

@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timezone
 
 from werkzeug.security import generate_password_hash
 
@@ -194,14 +194,14 @@ def complete_lesson(student_id, lesson_id):
 
     if progress:
         progress.completed = True
-        progress.completed_at = datetime.utcnow()
+        progress.completed_at = datetime.now(timezone.utc)
         return progress
 
     progress = Progress(
         student_id=student_id,
         lesson_id=lesson_id,
         completed=True,
-        completed_at=datetime.utcnow()
+        completed_at=datetime.now(timezone.utc)
     )
 
     db.session.add(progress)
@@ -216,7 +216,7 @@ def create_quiz_submission(student, quiz, score, answers):
         quiz_id=quiz.id,
         student_id=student.id,
         score=score,
-        submitted_at=datetime.utcnow()
+        submitted_at=datetime.now(timezone.utc)
     )
 
     db.session.add(submission)
