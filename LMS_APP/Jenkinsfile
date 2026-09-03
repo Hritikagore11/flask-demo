@@ -57,7 +57,21 @@ pipeline {
                 ]) {
                     sh '''
                         echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-                        docker push hritika1/lms_app:latest
+
+                        for i in 1 2 3; do
+                            echo "Docker push attempt $i..."
+
+                            if docker push hritika1/lms_app:latest; then
+                                echo "Docker push successful!"
+                                exit 0
+                            fi
+
+                            echo "Docker push failed. Retrying in 10 seconds..."
+                            sleep 10
+                        done
+
+                        echo "Docker push failed after 3 attempts."
+                        exit 1
                     '''
                 }
             }
@@ -92,3 +106,4 @@ pipeline {
         }
     }
 }
+
