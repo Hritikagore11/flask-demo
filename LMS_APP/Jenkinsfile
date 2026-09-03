@@ -26,6 +26,8 @@ pipeline {
                     export DB_HOST=localhost
                     export DB_PORT=3306
                     export DB_NAME=lms_db
+                    export TEST_DB_NAME=lms_db
+                    export TESTING=1
 
                     export SECRET_KEY=test-secret-key
                     export JWT_SECRET_KEY=test-jwt-secret-key
