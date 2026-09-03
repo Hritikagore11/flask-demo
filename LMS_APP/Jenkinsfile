@@ -23,7 +23,7 @@ pipeline {
 
                     export DB_USER=root
                     export DB_PASSWORD=Lms@123
-                    export DB_HOST=host.docker.internal
+                    export DB_HOST=msql
                     export DB_PORT=3306
                     export DB_NAME=lms_db
                     export TEST_DB_NAME=lms_db
