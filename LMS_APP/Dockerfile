@@ -6,7 +6,15 @@ COPY requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+COPY app.py .
+COPY config ./config
+COPY controllers ./controllers
+COPY dao ./dao
+COPY models ./models
+COPY services ./services
+COPY utils ./utils
+COPY templates ./templates
+COPY static ./static
 
 EXPOSE 3000
 

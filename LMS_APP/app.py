@@ -38,9 +38,14 @@ app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY")
 app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")
 app.config["JWT_TOKEN_LOCATION"] = ["cookies", "headers"]
+
 app.config["JWT_COOKIE_SECURE"] = False
 app.config["JWT_COOKIE_HTTPONLY"] = True
 app.config["JWT_COOKIE_SAMESITE"] = "Lax"
+
+app.config["JWT_COOKIE_CSRF_PROTECT"] = True
+app.config["JWT_CSRF_IN_COOKIES"] = True
+
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = 3600
 
 jwt.init_app(app)

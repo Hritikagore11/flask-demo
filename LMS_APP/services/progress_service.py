@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from models.progress import Progress
 
 class ProgressService:
@@ -10,7 +10,7 @@ class ProgressService:
 
         if progress:
             progress.completed = True
-            progress.completed_at = datetime.utcnow()
+            progress.completed_at = datetime.now(timezone.utc)
 
             return self.progress_dao.update_progress( progress)
 
@@ -18,7 +18,7 @@ class ProgressService:
             student_id=student_id,
             lesson_id=lesson_id,
             completed=True,
-            completed_at=datetime.utcnow()
+            completed_at=datetime.now(timezone.utc)
         )
 
         return self.progress_dao.create_progress(progress)
