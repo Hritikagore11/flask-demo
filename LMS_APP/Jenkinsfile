@@ -1,17 +1,11 @@
 pipeline {
     agent any
 
-    triggers{
+    triggers {
         githubPush()
     }
 
     stages {
-
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
 
         stage('Install Dependencies') {
             steps {
@@ -48,32 +42,32 @@ pipeline {
             }
         }
     }
-    post{
-        success{
+
+    post {
+        success {
             emailext(
-                subject: "SUCCESS ${env.JOB_NAME}  #${env.BUILD_NUMBER}",
+                subject: "SUCCESS ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                 body: """
                     <h2>Jenkins build Successful!!</h2>
                     <p>
-                        <b>URL</b>: ${env.BUILD_URL}
+                        <b>URL:</b> ${env.BUILD_URL}
                     </p>
                 """,
                 to: "44hritikagore@gmail.com"
             )
         }
 
-        failure{
+        failure {
             emailext(
-                subject: "FAILED ${env.JOB_NAME}  #${env.BUILD_NUMBER}",
+                subject: "FAILED ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                 body: """
                     <h2>Jenkins build Failed</h2>
                     <p>
-                        <b>URL</b>: ${env.BUILD_URL}
+                        <b>URL:</b> ${env.BUILD_URL}
                     </p>
                 """,
                 to: "44hritikagore@gmail.com"
             )
         }
     }
-
 }
